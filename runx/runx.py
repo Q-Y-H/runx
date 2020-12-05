@@ -181,12 +181,12 @@ def do_keyword_expansion(alist, pairs):
 
 
 def make_cool_names():
-    tagname = args.tag + '_' if args.tag else ''
-    datestr = datetime.now().strftime("_%Y.%m.%d_%H.%M")
+    tagname = args.tag if args.tag else ''
+    datestr = datetime.now().strftime("%Y.%m.%d_%H.%M")
     if args.no_cooldir:
         coolname = tagname
     else:
-        coolname = datestr + tagname + generate_slug(2)
+        coolname = datestr + "_" + generate_slug(2) + "_" + tagname
 
     # Experiment directory is the parent of N runs
     expdir = os.path.join(cfg.LOGROOT, cfg.EXP_NAME)
