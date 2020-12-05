@@ -79,7 +79,7 @@ def expand_hparams(hparams):
 def construct_cmd(cmd, hparams, logdir):
     """
     Build training command by starting with user-supplied 'CMD'
-    and then adding in hyperparameters, which came from expanding the 
+    and then adding in hyperparameters, which came from expanding the
     cross-product of all permutations from the experiment yaml file.
 
     We always copy the code to the target logdir and run from there.
@@ -102,7 +102,7 @@ def construct_cmd(cmd, hparams, logdir):
     exec_str = ''
     if 'submit_job' in cfg.SUBMIT_CMD:
         exec_str = 'exec'
-        
+
     cmd = f'cd {logdir}/code; PYTHONPATH={pythonpath} {exec_str} {cmd}'
     return cmd
 
@@ -186,7 +186,7 @@ def make_cool_names():
     if args.no_cooldir:
         coolname = tagname
     else:
-        coolname = tagname + generate_slug(2) + datestr
+        coolname = datestr + tagname + generate_slug(1)
 
     # Experiment directory is the parent of N runs
     expdir = os.path.join(cfg.LOGROOT, cfg.EXP_NAME)
@@ -328,7 +328,7 @@ def run_yaml(experiment, runroot):
 
         if not args.interactive:
             cmd = build_farm_cmd(cmd, job_name, resource_copy, logdir)
-            
+
         if args.no_run:
             print(cmd)
             continue
@@ -351,7 +351,7 @@ def run_yaml(experiment, runroot):
         else:
             print('Submitting job {}'.format(job_name))
         exec_cmd(cmd)
-            
+
 
 def run_experiment(exp_fn):
     """
