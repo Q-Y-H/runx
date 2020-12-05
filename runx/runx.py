@@ -186,7 +186,7 @@ def make_cool_names():
     if args.no_cooldir:
         coolname = tagname
     else:
-        coolname = datestr + tagname + generate_slug(1)
+        coolname = datestr + tagname + generate_slug(2)
 
     # Experiment directory is the parent of N runs
     expdir = os.path.join(cfg.LOGROOT, cfg.EXP_NAME)
